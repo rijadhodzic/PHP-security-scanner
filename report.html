@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>PHP Scanner Report – test_vulns.php</title>
+<style>
+  body{font-family:monospace;background:#0d1117;color:#c9d1d9;margin:0;padding:20px}
+  h1{color:#58a6ff;border-bottom:1px solid #30363d;padding-bottom:10px}
+  .meta{color:#8b949e;margin-bottom:20px}
+  .badge{display:inline-block;padding:3px 10px;border-radius:4px;color:#fff;font-size:12px;margin:2px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{background:#161b22;color:#8b949e;text-align:left;padding:8px 12px;border-bottom:2px solid #30363d}
+  td{padding:7px 12px;border-bottom:1px solid #21262d;vertical-align:top}
+  tr:hover td{background:#161b22}
+  .vtag{background:#1f6feb;color:#fff;padding:2px 6px;border-radius:3px;font-size:11px}
+</style>
+</head>
+<body>
+<h1>🔍 PHP Security Scanner Report</h1>
+<div class="meta">
+  <strong>Target:</strong> /home/dir/php_scanner/test_vulns.php<br/>
+  <strong>Files:</strong> 1 &nbsp;
+  <strong>Time:</strong> 4 ms
+</div>
+<div style="margin-bottom:20px"><span class='badge' style='background:#e74c3c'>CRITICAL: 6</span> <span class='badge' style='background:#c0392b'>HIGH: 9</span> <span class='badge' style='background:#f39c12'>MEDIUM: 4</span> <span class='badge' style='background:#3498db'>LOW: 2</span></div>
+<table>
+<thead><tr>
+  <th>File</th><th>Severity</th><th>Type</th><th>Line</th><th>Engine</th><th>Description</th>
+</tr></thead>
+<tbody>
+<tr><td>.</td><td style='color:#c0392b;font-weight:bold'>HIGH</td><td><span class='vtag'>XSS</span></td><td>6</td><td>symbolic</td><td>User-controlled input (USER_GET) reaches echo/print without HTML encoding. Attacker can inject arbitrary JS.</td></tr><tr><td>.</td><td style='color:#e74c3c;font-weight:bold'>CRITICAL</td><td><span class='vtag'>SQLI</span></td><td>14</td><td>symbolic</td><td>User-controlled input (USER_GET) concatenated into SQL query via mysql_query. Use prepared statements.</td></tr><tr><td>.</td><td style='color:#e74c3c;font-weight:bold'>CRITICAL</td><td><span class='vtag'>SQLI</span></td><td>19</td><td>symbolic</td><td>User-controlled input (UNKNOWN) concatenated into SQL query via mysqli_query. Use prepared statements.</td></tr><tr><td>.</td><td style='color:#c0392b;font-weight:bold'>HIGH</td><td><span class='vtag'>LFI</span></td><td>23</td><td>symbolic</td><td>User-controlled input (USER_GET) used in include/require. Attacker can include arbitrary files.</td></tr><tr><td>.</td><td style='color:#e74c3c;font-weight:bold'>CRITICAL</td><td><span class='vtag'>CMDI</span></td><td>27</td><td>symbolic</td><td>User-controlled input (USER_GET) passed to shell via shell_exec. Use escapeshellarg().</td></tr><tr><td>.</td><td style='color:#f39c12;font-weight:bold'>MEDIUM</td><td><span class='vtag'>OPEN_REDIRECT</span></td><td>31</td><td>symbolic</td><td>User-controlled input (USER_GET) in header() Location redirect. Validate URLs against allowlist.</td></tr><tr><td>.</td><td style='color:#e74c3c;font-weight:bold'>CRITICAL</td><td><span class='vtag'>CODE_EXEC</span></td><td>35</td><td>symbolic</td><td>User-controlled input (USER_POST) passed to eval for execution.</td></tr><tr><td>.</td><td style='color:#e74c3c;font-weight:bold'>CRITICAL</td><td><span class='vtag'>CODE_EXEC</span></td><td>35</td><td>symbolic</td><td>User-controlled input (USER_POST) passed to eval() for execution.</td></tr><tr><td>.</td><td style='color:#c0392b;font-weight:bold'>HIGH</td><td><span class='vtag'>INSECURE_DESERIAL</span></td><td>38</td><td>symbolic</td><td>User-controlled data (USER_COOK) passed to unserialize(). Use JSON instead.</td></tr><tr><td>.</td><td style='color:#f39c12;font-weight:bold'>MEDIUM</td><td><span class='vtag'>PATH_TRAVERSAL</span></td><td>42</td><td>symbolic</td><td>User-controlled path (USER_GET) in file_get_contents. Use basename() and realpath() to validate.</td></tr><tr><td>.</td><td style='color:#c0392b;font-weight:bold'>HIGH</td><td><span class='vtag'>SSRF</span></td><td>47</td><td>symbolic</td><td>User-controlled URL (UNKNOWN) passed to curl_setopt. Validate against allowlist.</td></tr><tr><td>.</td><td style='color:#c0392b;font-weight:bold'>HIGH</td><td><span class='vtag'>XSS</span></td><td>67</td><td>symbolic</td><td>User-controlled input (USER_REQ) reaches echo/print without HTML encoding. Attacker can inject arbitrary JS.</td></tr><tr><td>.</td><td style='color:#c0392b;font-weight:bold'>HIGH</td><td><span class='vtag'>XSS</span></td><td>74</td><td>symbolic</td><td>User-controlled input (USER_GET) reaches echo/print without HTML encoding. Attacker can inject arbitrary JS.</td></tr><tr><td>.</td><td style='color:#e74c3c;font-weight:bold'>CRITICAL</td><td><span class='vtag'>SQLI</span></td><td>79</td><td>symbolic</td><td>User-controlled input (UNKNOWN) concatenated into SQL query via mysqli_query. Use prepared statements.</td></tr><tr><td>.</td><td style='color:#c0392b;font-weight:bold'>HIGH</td><td><span class='vtag'>XXE</span></td><td>82</td><td>symbolic</td><td>Potentially unsafe XML parsing via simplexml_load_string. Disable external entities.</td></tr><tr><td>.</td><td style='color:#c0392b;font-weight:bold'>HIGH</td><td><span class='vtag'>INSECURE_DESERIAL</span></td><td>38</td><td>pattern</td><td>unserialize() with user input — object injection</td></tr><tr><td>.</td><td style='color:#f39c12;font-weight:bold'>MEDIUM</td><td><span class='vtag'>HARDCODED_SECRET</span></td><td>54</td><td>pattern</td><td>Possible hardcoded credential or secret</td></tr><tr><td>.</td><td style='color:#3498db;font-weight:bold'>LOW</td><td><span class='vtag'>WEAK_CRYPTO</span></td><td>57</td><td>pattern</td><td>Weak hash function (MD5/SHA1) used on user data</td></tr><tr><td>.</td><td style='color:#f39c12;font-weight:bold'>MEDIUM</td><td><span class='vtag'>SESSION_FIXATION</span></td><td>60</td><td>pattern</td><td>session_id() set from user input — session fixation</td></tr><tr><td>.</td><td style='color:#3498db;font-weight:bold'>LOW</td><td><span class='vtag'>INFO_EXPOSURE</span></td><td>63</td><td>pattern</td><td>Debug function exposing server/user data</td></tr><tr><td>.</td><td style='color:#c0392b;font-weight:bold'>HIGH</td><td><span class='vtag'>XXE</span></td><td>82</td><td>pattern</td><td>SimpleXML load — ensure external entities are disabled</td></tr>
+</tbody>
+</table>
+</body>
+</html>
