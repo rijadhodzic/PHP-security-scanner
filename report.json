@@ -1,0 +1,268 @@
+{
+  "target": "/home/dir/php_scanner/test_vulns.php",
+  "files_scanned": 1,
+  "total_symbolic": 15,
+  "total_pattern": 6,
+  "severity_counts": {
+    "HIGH": 9,
+    "CRITICAL": 6,
+    "MEDIUM": 4,
+    "LOW": 2
+  },
+  "scan_time_ms": 3.805398941040039,
+  "results": [
+    {
+      "file": "/home/dir/php_scanner/test_vulns.php",
+      "lines": 83,
+      "cfg_nodes": 2,
+      "parse_error": null,
+      "symbolic": [
+        {
+          "type": "xss",
+          "severity": "HIGH",
+          "sink": "echo/print",
+          "line": 6,
+          "confidence": "HIGH",
+          "taint_sources": [
+            "USER_GET"
+          ],
+          "sanitised_by": [],
+          "description": "User-controlled input (USER_GET) reaches echo/print without HTML encoding. Attacker can inject arbitrary JS.",
+          "constraints": []
+        },
+        {
+          "type": "sqli",
+          "severity": "CRITICAL",
+          "sink": "mysql_query",
+          "line": 14,
+          "confidence": "HIGH",
+          "taint_sources": [
+            "USER_GET"
+          ],
+          "sanitised_by": [],
+          "description": "User-controlled input (USER_GET) concatenated into SQL query via mysql_query. Use prepared statements.",
+          "constraints": []
+        },
+        {
+          "type": "sqli",
+          "severity": "CRITICAL",
+          "sink": "mysqli_query",
+          "line": 19,
+          "confidence": "HIGH",
+          "taint_sources": [
+            "UNKNOWN"
+          ],
+          "sanitised_by": [],
+          "description": "User-controlled input (UNKNOWN) concatenated into SQL query via mysqli_query. Use prepared statements.",
+          "constraints": []
+        },
+        {
+          "type": "lfi",
+          "severity": "HIGH",
+          "sink": "include/require",
+          "line": 23,
+          "confidence": "HIGH",
+          "taint_sources": [
+            "USER_GET"
+          ],
+          "sanitised_by": [],
+          "description": "User-controlled input (USER_GET) used in include/require. Attacker can include arbitrary files.",
+          "constraints": []
+        },
+        {
+          "type": "cmdi",
+          "severity": "CRITICAL",
+          "sink": "shell_exec",
+          "line": 27,
+          "confidence": "HIGH",
+          "taint_sources": [
+            "USER_GET"
+          ],
+          "sanitised_by": [],
+          "description": "User-controlled input (USER_GET) passed to shell via shell_exec. Use escapeshellarg().",
+          "constraints": []
+        },
+        {
+          "type": "open_redirect",
+          "severity": "MEDIUM",
+          "sink": "header",
+          "line": 31,
+          "confidence": "HIGH",
+          "taint_sources": [
+            "USER_GET"
+          ],
+          "sanitised_by": [],
+          "description": "User-controlled input (USER_GET) in header() Location redirect. Validate URLs against allowlist.",
+          "constraints": []
+        },
+        {
+          "type": "code_exec",
+          "severity": "CRITICAL",
+          "sink": "eval",
+          "line": 35,
+          "confidence": "HIGH",
+          "taint_sources": [
+            "USER_POST"
+          ],
+          "sanitised_by": [],
+          "description": "User-controlled input (USER_POST) passed to eval for execution.",
+          "constraints": []
+        },
+        {
+          "type": "code_exec",
+          "severity": "CRITICAL",
+          "sink": "eval()",
+          "line": 35,
+          "confidence": "HIGH",
+          "taint_sources": [
+            "USER_POST"
+          ],
+          "sanitised_by": [],
+          "description": "User-controlled input (USER_POST) passed to eval() for execution.",
+          "constraints": []
+        },
+        {
+          "type": "insecure_deserial",
+          "severity": "HIGH",
+          "sink": "unserialize",
+          "line": 38,
+          "confidence": "HIGH",
+          "taint_sources": [
+            "USER_COOK"
+          ],
+          "sanitised_by": [],
+          "description": "User-controlled data (USER_COOK) passed to unserialize(). Use JSON instead.",
+          "constraints": []
+        },
+        {
+          "type": "path_traversal",
+          "severity": "MEDIUM",
+          "sink": "file_get_contents",
+          "line": 42,
+          "confidence": "HIGH",
+          "taint_sources": [
+            "USER_GET"
+          ],
+          "sanitised_by": [],
+          "description": "User-controlled path (USER_GET) in file_get_contents. Use basename() and realpath() to validate.",
+          "constraints": []
+        },
+        {
+          "type": "ssrf",
+          "severity": "HIGH",
+          "sink": "curl_setopt",
+          "line": 47,
+          "confidence": "HIGH",
+          "taint_sources": [
+            "UNKNOWN"
+          ],
+          "sanitised_by": [],
+          "description": "User-controlled URL (UNKNOWN) passed to curl_setopt. Validate against allowlist.",
+          "constraints": []
+        },
+        {
+          "type": "xss",
+          "severity": "HIGH",
+          "sink": "echo/print",
+          "line": 67,
+          "confidence": "HIGH",
+          "taint_sources": [
+            "USER_REQ"
+          ],
+          "sanitised_by": [],
+          "description": "User-controlled input (USER_REQ) reaches echo/print without HTML encoding. Attacker can inject arbitrary JS.",
+          "constraints": []
+        },
+        {
+          "type": "xss",
+          "severity": "HIGH",
+          "sink": "echo/print",
+          "line": 74,
+          "confidence": "HIGH",
+          "taint_sources": [
+            "USER_GET"
+          ],
+          "sanitised_by": [],
+          "description": "User-controlled input (USER_GET) reaches echo/print without HTML encoding. Attacker can inject arbitrary JS.",
+          "constraints": []
+        },
+        {
+          "type": "sqli",
+          "severity": "CRITICAL",
+          "sink": "mysqli_query",
+          "line": 79,
+          "confidence": "HIGH",
+          "taint_sources": [
+            "UNKNOWN"
+          ],
+          "sanitised_by": [],
+          "description": "User-controlled input (UNKNOWN) concatenated into SQL query via mysqli_query. Use prepared statements.",
+          "constraints": []
+        },
+        {
+          "type": "xxe",
+          "severity": "HIGH",
+          "sink": "simplexml_load_string",
+          "line": 82,
+          "confidence": "HIGH",
+          "taint_sources": [
+            "USER_POST"
+          ],
+          "sanitised_by": [],
+          "description": "Potentially unsafe XML parsing via simplexml_load_string. Disable external entities.",
+          "constraints": []
+        }
+      ],
+      "pattern": [
+        {
+          "type": "insecure_deserial",
+          "severity": "HIGH",
+          "line": 38,
+          "confidence": "MEDIUM",
+          "description": "unserialize() with user input \u2014 object injection",
+          "snippet": "$data = unserialize($_COOKIE['user_data']);"
+        },
+        {
+          "type": "hardcoded_secret",
+          "severity": "MEDIUM",
+          "line": 54,
+          "confidence": "MEDIUM",
+          "description": "Possible hardcoded credential or secret",
+          "snippet": "$api_key = \"sk-abc123supersecretkey9876\";"
+        },
+        {
+          "type": "weak_crypto",
+          "severity": "LOW",
+          "line": 57,
+          "confidence": "MEDIUM",
+          "description": "Weak hash function (MD5/SHA1) used on user data",
+          "snippet": "$hashed = md5($password);"
+        },
+        {
+          "type": "session_fixation",
+          "severity": "MEDIUM",
+          "line": 60,
+          "confidence": "HIGH",
+          "description": "session_id() set from user input \u2014 session fixation",
+          "snippet": "session_id($_GET['sid']);"
+        },
+        {
+          "type": "info_exposure",
+          "severity": "LOW",
+          "line": 63,
+          "confidence": "MEDIUM",
+          "description": "Debug function exposing server/user data",
+          "snippet": "phpinfo();"
+        },
+        {
+          "type": "xxe",
+          "severity": "HIGH",
+          "line": 82,
+          "confidence": "HIGH",
+          "description": "SimpleXML load \u2014 ensure external entities are disabled",
+          "snippet": "$xml = simplexml_load_string($_POST['xml_data']);"
+        }
+      ]
+    }
+  ]
+}
